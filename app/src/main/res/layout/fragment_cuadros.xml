@@ -7,70 +7,10 @@
     android:background="#97D351"
     tools:context=".fragments.CuadrosFragment">
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewCuadros"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:padding="16dp"/>
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Explora un mundo de arte y cultura" />
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Categorias" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="237dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="242dp"
-                android:layout_height="205dp"
-                android:layout_weight="1"
-                android:src="@drawable/autores" />
-
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/carpintero" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Nombres"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/textView14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Artistas"
-                android:textSize="16sp" />
-
-        </LinearLayout>
-
-    </LinearLayout>
 </FrameLayout>

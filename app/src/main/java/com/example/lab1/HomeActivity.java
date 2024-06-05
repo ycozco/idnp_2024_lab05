@@ -65,7 +65,7 @@ public class HomeActivity extends AppCompatActivity {
                     loadFragment(homeFragment);
                     return true;
                 }else if(menuItem.getItemId()==R.id.menu_cuadros) {
-                    cuadrosFragment=CuadrosFragment.newInstance("","");
+                    cuadrosFragment = CuadrosFragment.newInstance();
                     loadFragment(cuadrosFragment);
                     return true;
 
