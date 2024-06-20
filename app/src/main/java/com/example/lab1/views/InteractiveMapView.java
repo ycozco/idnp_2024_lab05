@@ -62,9 +62,24 @@ public class InteractiveMapView extends View {
         elements.add(new MapElement(MapElement.ElementType.TEXTO, 900, 400, 0, 0, "GALERÍA V"));
         elements.add(new MapElement(MapElement.ElementType.TEXTO, 1100, 400, 0, 0, "GALERÍA VI"));
 
-        // Ajustar elementos adicionales según el plano específico proporcionado
-    }
+        // Delimitación de galerías con líneas
+        elements.add(new MapElement(MapElement.ElementType.LINEA, 50, 200, 1200, 200, ""));
+        elements.add(new MapElement(MapElement.ElementType.LINEA, 50, 600, 1200, 600, ""));
+        elements.add(new MapElement(MapElement.ElementType.LINEA, 50, 1000, 1200, 1000, ""));
+        elements.add(new MapElement(MapElement.ElementType.LINEA, 50, 1400, 1200, 1400, ""));
+        elements.add(new MapElement(MapElement.ElementType.LINEA, 50, 1800, 1200, 1800, ""));
 
+        elements.add(new MapElement(MapElement.ElementType.LINEA, 200, 50, 200, 1800, ""));
+        elements.add(new MapElement(MapElement.ElementType.LINEA, 600, 50, 600, 1800, ""));
+        elements.add(new MapElement(MapElement.ElementType.LINEA, 1000, 50, 1000, 1800, ""));
+
+        // Añadir más elementos según el plano específico proporcionado
+        elements.add(new MapElement(MapElement.ElementType.PINTURA, 50, 650, 100, 700, "Pintura 1"));
+        elements.add(new MapElement(MapElement.ElementType.PINTURA, 150, 650, 200, 700, "Pintura 2"));
+        elements.add(new MapElement(MapElement.ElementType.PINTURA, 250, 650, 300, 700, "Pintura 3"));
+
+        // Completar con más elementos según sea necesario
+    }
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);

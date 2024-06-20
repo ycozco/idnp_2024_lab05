@@ -7,7 +7,7 @@ import android.graphics.Path;
 
 public class MapElement {
     public enum ElementType {
-        AREA_VERDE, PORTAL, PUERTA, VENTANA, PINTURA, BANQUETA, TEXTO
+        AREA_VERDE, PORTAL, PUERTA, VENTANA, PINTURA, BANQUETA, TEXTO, LINEA
     }
 
     private ElementType type;
@@ -54,9 +54,14 @@ public class MapElement {
                 paint.setTextSize(30);
                 canvas.drawText(label, x1, y1, paint);
                 break;
+            case LINEA:
+                paint.setColor(Color.BLACK);
+                paint.setStrokeWidth(5);
+                canvas.drawLine(x1, y1, x2, y2, paint);
+                break;
         }
 
-        if (type != ElementType.TEXTO) {
+        if (type != ElementType.TEXTO && type != ElementType.LINEA) {
             paint.setColor(Color.BLACK);
             paint.setTextSize(20);
             canvas.drawText(label, x1, y1 - 10, paint);
