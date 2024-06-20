@@ -1,15 +1,18 @@
 package com.example.lab1.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.lab1.R;
+import com.example.lab1.views.GalleryView;
 
 public class GaleriaFragment extends Fragment {
 
@@ -40,12 +43,14 @@ public class GaleriaFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d("MapaFragment22222222222", "Area clicked: " + area); // Añadir este log
         View view = inflater.inflate(R.layout.fragment_galeria, container, false);
 
-        // Aquí puedes actualizar la vista según el valor de 'area'
-        // Por ejemplo, podrías cambiar el texto de un TextView para mostrar el nombre de la galería
-        // TextView textView = view.findViewById(R.id.textView);
-        // textView.setText(area);
+        TextView textView = view.findViewById(R.id.galeriaTextView);
+        textView.setText("Galería seleccionada: " + area);
+
+        GalleryView galleryView = view.findViewById(R.id.galleryView);
+        galleryView.setGalleryName(area);
 
         return view;
     }

@@ -1,6 +1,7 @@
 package com.example.lab1.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,7 @@ public class MapaFragment extends Fragment {
         InteractiveMapView interactiveMapView = view.findViewById(R.id.interactiveMapView);
         interactiveMapView.setOnMapClickListener(area -> {
             // Manejar los clics en las áreas del mapa
+            Log.d("MapaFragment", "Area clicked: " + area); // Añadir este log
             Fragment fragment = GaleriaFragment.newInstance(area, "");  // Pasa el nombre del área clickeada
             if (fragment != null) {
                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();

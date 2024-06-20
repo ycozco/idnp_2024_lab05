@@ -5,10 +5,21 @@
     android:layout_height="match_parent"
     tools:context=".fragments.GaleriaFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <TextView
+        android:id="@+id/galeriaTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Galería"
+        android:textSize="20sp"
+        android:layout_gravity="top|center_horizontal"
+        android:padding="16dp"/>
+
+    <com.example.lab1.views.GalleryView
+        android:id="@+id/galleryView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_gravity="center" />
+
 
 </FrameLayout>
