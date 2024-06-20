@@ -5,18 +5,18 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class InteractiveMapView extends View {
     private Paint paint;
     private OnMapClickListener listener;
-    private List<MapElement> elements;
+
+    // Definimos las áreas de las galerías
+    private GalleryArea[] galleryAreas;
 
     public InteractiveMapView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -28,58 +28,19 @@ public class InteractiveMapView extends View {
         paint.setStrokeWidth(2);
         paint.setTextSize(20);
 
-        elements = new ArrayList<>();
-        populateMapElements();
+        // Inicializar áreas de galerías
+        galleryAreas = new GalleryArea[]{
+                new GalleryArea("LA SALA 1", 0.02f, 0.02f, 0.45f, 0.20f),
+                new GalleryArea("LA SALA 2", 0.55f, 0.02f, 0.98f, 0.20f),
+                new GalleryArea("Galería VI", 0.02f, 0.25f, 0.35f, 0.45f),
+                new GalleryArea("Galería V", 0.40f, 0.25f, 0.65f, 0.45f),
+                new GalleryArea("Galería IV", 0.70f, 0.25f, 0.98f, 0.70f),
+                new GalleryArea("Galería III", 0.02f, 0.50f, 0.35f, 0.70f),
+                new GalleryArea("Galería II", 0.40f, 0.50f, 0.65f, 0.70f),
+                new GalleryArea("Galería I", 0.02f, 0.75f, 0.98f, 0.95f)
+        };
     }
 
-    private void populateMapElements() {
-        // Aquí se definen las coordenadas para los elementos del mapa basado en el plano proporcionado
-
-        // Ejemplo de áreas verdes
-        elements.add(new MapElement(MapElement.ElementType.AREA_VERDE, 50, 50, 150, 150, "Área Verde"));
-
-        // Ejemplo de portales
-        elements.add(new MapElement(MapElement.ElementType.PORTAL, 250, 50, 300, 100, "Portal"));
-
-        // Ejemplo de puertas (como trapecios largos con poca altura)
-        elements.add(new MapElement(MapElement.ElementType.PUERTA, 350, 50, 500, 70, "Puerta"));
-
-        // Ejemplo de ventanas (como trapecios largos con poca altura)
-        elements.add(new MapElement(MapElement.ElementType.VENTANA, 550, 50, 700, 70, "Ventana"));
-
-        // Ejemplo de pinturas (círculos)
-        elements.add(new MapElement(MapElement.ElementType.PINTURA, 800, 50, 850, 100, "Pintura"));
-
-        // Ejemplo de banquetas
-        elements.add(new MapElement(MapElement.ElementType.BANQUETA, 50, 250, 100, 300, "Banqueta"));
-
-        // Añadir más elementos y ubicaciones según el plano proporcionado
-        // Ejemplo de delimitación de galerías
-        elements.add(new MapElement(MapElement.ElementType.TEXTO, 100, 400, 0, 0, "GALERÍA I"));
-        elements.add(new MapElement(MapElement.ElementType.TEXTO, 300, 400, 0, 0, "GALERÍA II"));
-        elements.add(new MapElement(MapElement.ElementType.TEXTO, 500, 400, 0, 0, "GALERÍA III"));
-        elements.add(new MapElement(MapElement.ElementType.TEXTO, 700, 400, 0, 0, "GALERÍA IV"));
-        elements.add(new MapElement(MapElement.ElementType.TEXTO, 900, 400, 0, 0, "GALERÍA V"));
-        elements.add(new MapElement(MapElement.ElementType.TEXTO, 1100, 400, 0, 0, "GALERÍA VI"));
-
-        // Delimitación de galerías con líneas
-        elements.add(new MapElement(MapElement.ElementType.LINEA, 50, 200, 1200, 200, ""));
-        elements.add(new MapElement(MapElement.ElementType.LINEA, 50, 600, 1200, 600, ""));
-        elements.add(new MapElement(MapElement.ElementType.LINEA, 50, 1000, 1200, 1000, ""));
-        elements.add(new MapElement(MapElement.ElementType.LINEA, 50, 1400, 1200, 1400, ""));
-        elements.add(new MapElement(MapElement.ElementType.LINEA, 50, 1800, 1200, 1800, ""));
-
-        elements.add(new MapElement(MapElement.ElementType.LINEA, 200, 50, 200, 1800, ""));
-        elements.add(new MapElement(MapElement.ElementType.LINEA, 600, 50, 600, 1800, ""));
-        elements.add(new MapElement(MapElement.ElementType.LINEA, 1000, 50, 1000, 1800, ""));
-
-        // Añadir más elementos según el plano específico proporcionado
-        elements.add(new MapElement(MapElement.ElementType.PINTURA, 50, 650, 100, 700, "Pintura 1"));
-        elements.add(new MapElement(MapElement.ElementType.PINTURA, 150, 650, 200, 700, "Pintura 2"));
-        elements.add(new MapElement(MapElement.ElementType.PINTURA, 250, 650, 300, 700, "Pintura 3"));
-
-        // Completar con más elementos según sea necesario
-    }
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -88,12 +49,33 @@ public class InteractiveMapView extends View {
 
     private void drawMap(Canvas canvas) {
         // Fondo
-        canvas.drawColor(Color.parseColor("#EAC555"));
+        canvas.drawColor(Color.parseColor("#FFF8DC"));
 
-        // Dibujar todos los elementos del mapa
-        for (MapElement element : elements) {
-            element.draw(canvas, paint);
+        // Dibujar galerías y salas
+        for (GalleryArea area : galleryAreas) {
+            drawGallery(canvas, area.x1, area.y1, area.x2, area.y2, area.label);
         }
+    }
+
+    private void drawGallery(Canvas canvas, float x1, float y1, float x2, float y2, String label) {
+        float width = getWidth();
+        float height = getHeight();
+        float left = width * x1;
+        float top = height * y1;
+        float right = width * x2;
+        float bottom = height * y2;
+
+        paint.setColor(Color.LTGRAY);
+        paint.setStyle(Paint.Style.FILL);
+        canvas.drawRect(left, top, right, bottom, paint);
+
+        paint.setColor(Color.BLACK);
+        paint.setStyle(Paint.Style.STROKE);
+        canvas.drawRect(left, top, right, bottom, paint);
+
+        paint.setStyle(Paint.Style.FILL);
+        paint.setTextSize(30);
+        canvas.drawText(label, left + 10, top + 40, paint);
     }
 
     @Override
@@ -101,6 +83,7 @@ public class InteractiveMapView extends View {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             float x = event.getX();
             float y = event.getY();
+            Log.d("InteractiveMapView", "Touched at: (" + x + ", " + y + ")");
             handleTouch(x, y);
             return true;
         }
@@ -108,10 +91,19 @@ public class InteractiveMapView extends View {
     }
 
     private void handleTouch(float x, float y) {
-        for (MapElement element : elements) {
-            if (element.contains(x, y)) {
+        float width = getWidth();
+        float height = getHeight();
+
+        for (GalleryArea area : galleryAreas) {
+            float left = width * area.x1;
+            float top = height * area.y1;
+            float right = width * area.x2;
+            float bottom = height * area.y2;
+
+            if (x >= left && x <= right && y >= top && y <= bottom) {
+                Log.d("InteractiveMapView", "Touched area: " + area.label);
                 if (listener != null) {
-                    listener.onAreaClick(element.getLabel());
+                    listener.onAreaClick(area.label);
                 }
                 break;
             }
@@ -124,5 +116,18 @@ public class InteractiveMapView extends View {
 
     public interface OnMapClickListener {
         void onAreaClick(String area);
+    }
+
+    private static class GalleryArea {
+        String label;
+        float x1, y1, x2, y2;
+
+        GalleryArea(String label, float x1, float y1, float x2, float y2) {
+            this.label = label;
+            this.x1 = x1;
+            this.y1 = y1;
+            this.x2 = x2;
+            this.y2 = y2;
+        }
     }
 }

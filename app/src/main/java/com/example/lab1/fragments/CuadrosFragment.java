@@ -13,7 +13,6 @@ import com.example.lab1.models.Cuadro;
 
 import java.util.ArrayList;
 import java.util.List;
-
 public class CuadrosFragment extends Fragment {
 
     private RecyclerView recyclerViewCuadros;

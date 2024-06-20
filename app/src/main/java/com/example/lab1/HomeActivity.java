@@ -2,8 +2,6 @@ package com.example.lab1;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +11,6 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
 import com.example.lab1.fragments.CuadrosFragment;
 import com.example.lab1.fragments.HomeFragment;
 import com.example.lab1.fragments.MapaFragment;
