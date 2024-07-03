@@ -36,6 +36,11 @@ android {
 
 }
 dependencies {
+    implementation ("androidx.room:room-runtime:2.4.0")
+    annotationProcessor ("androidx.room:room-compiler:2.4.0")
+    implementation ("androidx.room:room-ktx:2.4.0")
+    implementation ("androidx.navigation:navigation-fragment-ktx:2.5.0")
+    implementation ("androidx.navigation:navigation-ui-ktx:2.5.0")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

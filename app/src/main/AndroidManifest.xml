@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lab1"
         tools:targetApi="31">
+
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
@@ -21,6 +22,10 @@
         <activity
             android:name=".AccountEntity"
             android:exported="false" />
+        <activity
+            android:name=".dataBase.Main2"
+            android:exported="false" />
+
         <activity
             android:name=".LoginActivity"
             android:exported="true">
